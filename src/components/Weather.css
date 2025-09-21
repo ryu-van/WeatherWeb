@@ -1,0 +1,142 @@
+:root{
+  --header-h: clamp(56px, 8vh, 72px);
+  --footer-h: clamp(48px, 7vh, 64px);
+}
+
+.weather-app{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.weather-header{
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+.weather-title {
+  font-size: 25px;
+  font-weight: bold;
+  color: #9667e0;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 30rem;
+}
+.search-input {
+  padding: 8px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  width: 80%;
+}
+.search-input:hover { border-color: #9667e0; }
+.search-input:focus {
+  border-color: #9667e0;
+  outline: none; 
+  box-shadow: 0 0 0 2px rgba(150, 103, 224, 0.3); 
+}
+.search-button {
+  padding: 3px 5px;
+  border: 1px solid #9667e0;
+  border-radius: 100%;
+  font-size: 8px;
+  cursor: pointer;
+  background: #f2ebfb;
+}
+.menu { width: 50px; }
+.menu-icon { width: 70%; height: 70%; }
+
+.weather-main{
+  height: calc(100vh - var(--header-h));
+  display: grid;
+  grid-template-rows: 65% 35%;
+  gap: 12px;
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.weather-banner{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-image{
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+.banner-image img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  /* object-position: center; */
+}
+.banner-info{
+  position: absolute;
+  bottom: 10%;
+  left: 1ch;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.tempature-info{
+  display: flex;
+  align-items: baseline;
+  font-size: 48px;
+  color: #fff;
+
+}
+.tempature-unit{
+  font-size: 24px;
+
+}
+.city-info{
+  font-size: 50px;
+  font-weight: 500;
+  color: #fff;
+
+}
+.banner-time{
+  position: absolute;
+  bottom: 5%;
+  right: 1ch;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.hours-info{
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+.date-info{
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+.weather-info{
+  border-radius: 12px;
+  padding: 2px;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5px;
+
+}
+.left-info, .right-info {
+  border: 1px dashed #9667e0;
+}
