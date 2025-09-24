@@ -140,3 +140,40 @@
 .left-info, .right-info {
   border: 1px dashed #9667e0;
 }
+.weather-extra {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 cột */
+  gap: 8px;
+  margin-top: 5px;
+  padding: 8px;
+}
+
+.extra-card {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.extra-card img {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 5px;
+}
+
+.extra-card span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.extra-card strong {
+  font-size: 18px;
+  margin-top: 8px;
+}
