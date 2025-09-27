@@ -1,0 +1,90 @@
+.weather-app{
+  min-height: 100vh;
+}
+
+.weather-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin: 2rem auto 0;   
+  width: 80%;           
+  max-width: 120rem;      
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.1);  
+  backdrop-filter: blur(8px);       
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);  
+}
+.weather-title {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 40rem;
+}
+.search-input {
+  padding: 8px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  width: 80%;
+ background: transparent;
+ border: 1px solid;
+}
+.search-input:focus {
+  outline: none; 
+}
+.search-button {
+  padding: 3px 5px;
+  border-radius: 100%;
+  font-size: 8px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+.menu {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255,255,255,.06);        
+  border: 1px solid rgba(255,255,255,.12);
+  cursor: pointer;
+  transition: background .15s ease, transform .06s ease, box-shadow .15s ease;
+  -webkit-tap-highlight-color: transparent; 
+}
+
+.menu:hover {
+  background: rgba(255,255,255,.12);
+}
+
+.menu:active {
+  transform: translateY(1px) scale(.98);
+}
+
+.menu:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.menu.is-open {
+  background: rgba(255,255,255,.18);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.12) inset;
+}
+
+.menu-icon {
+  width: 22px;
+  height: 22px;
+  display: block;  
+  pointer-events: none; 
+}
+
+
+
+
