@@ -1,0 +1,55 @@
+import React, { useState } from "react";
+import {
+  getCurrentWeather,
+  getCurrentWeatherByCoords,
+  getWeatherForecast,
+  searchCities,
+} from "../services/weatherApi";
+export const useWeather = () => {
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [unit, setUnit] = useState("C");
+
+  const fetchWeatherByCity = async (city) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const [weatherData, forecastData] = await Promise.all([
+        getCurrentWeather(city),
+        setForecast(city),
+      ]);
+      setCurrentWeather(weatherData);
+      setForecast(forecastData);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to fetch weather data."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchWeatherByLocation = async () => {
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported by your browser.");
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const [latitude, longitude] = position.coords;
+        const weatherData = await getCurrentWeatherByCoords(
+          latitude,
+          longitude
+        );
+        setCurrentWeather(weatherData);
+      });
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to fetch weather data."
+      );
+    }
+  };
+};

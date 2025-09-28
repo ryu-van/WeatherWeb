@@ -4,7 +4,7 @@ import searchIcon from '../assets/icons8-search.svg';
 
 const WeatherHeader = ({ openSettings, setOpenSettings }) => {
   return (
-    <header className="weather-header">
+    <header className="weather-header relative">
       <h4 className="weather-title">Ryu Weather</h4>
       <div className="search-box">
         <input

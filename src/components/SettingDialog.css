@@ -1,14 +1,45 @@
+/* Overlay background cho dialog */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 1000;
+  animation: overlay-in 0.2s ease-out;
+}
+
 .setting-dialog {
-  position: relative;
-  width: 420px;
-  max-width: 92vw;
+  position: absolute;
+  top: 12%; /* Dưới header */
+  right: 5%; /* Căn phải như icon menu */
+  width: 320px;
+  max-width: calc(100vw - 32px);
   padding: 18px 18px 20px;
   border-radius: 12px;
-  background: rgba(20, 35, 42, 0.9);     /* có thể đổi cho hợp theme */
+  background: rgba(20, 35, 42, 0.95);    
   color: #fff;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0,0,0,.3), inset 0 0 0 1px rgba(255,255,255,.08);
-  animation: dialog-in .18s ease-out;
+  animation: dropdown-in .25s ease-out;
+  overflow-y: auto;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dropdown-in {
+  from { 
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 .dialog_header{
     display: flex;
@@ -84,4 +115,94 @@
 
 .dialog-row select:hover {
   border-color: rgba(255,255,255,.4);
+}
+
+
+@media (max-width: 768px) {
+  .setting-dialog {
+    top: 8%;
+    right: 4%;
+    left: 4%;
+    width: auto;
+    max-width: none;
+    margin: 0 auto;
+  }
+  
+  .dialog-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    text-align: left;
+  }
+  
+  .dialog-row label {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  
+  .dialog-row select {
+    padding: 10px 12px;
+    font-size: 16px; /* Tránh zoom trên iOS */
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .setting-dialog {
+    top: 5%;
+    right: 8px;
+    left: 8px;
+    width: auto;
+    padding: 16px;
+    border-radius: 10px;
+  }
+  
+  .dialog_header h3 {
+    font-size: 18px;
+  }
+  
+  .close-btn {
+    width: 28px;
+    height: 28px;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .close-btn img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .dialog-row {
+    margin-top: 16px;
+  }
+  
+  .dialog-row label {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .dialog-row select {
+    padding: 12px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+  }
+}
+
+/* Màn hình rất nhỏ */
+@media (max-width: 360px) {
+  .setting-dialog {
+    top: 3%;
+    right: 4px;
+    left: 4px;
+    padding: 14px;
+  }
+  
+  .dialog_header h3 {
+    font-size: 16px;
+  }
+  
+  .dialog-row select {
+    padding: 10px 12px;
+    font-size: 15px;
+  }
 }
