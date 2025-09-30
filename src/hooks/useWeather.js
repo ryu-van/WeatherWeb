@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getCurrentWeather,
   getCurrentWeatherByCoords,
   getWeatherForecast,
-  searchCities,
+  // searchCities,
 } from "../services/weatherApi";
 export const useWeather = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [unit, setUnit] = useState("C");
+  const [unit, setUnits] = useState("C");
 
   const fetchWeatherByCity = async (city) => {
     setLoading(true);
@@ -18,7 +18,7 @@ export const useWeather = () => {
     try {
       const [weatherData, forecastData] = await Promise.all([
         getCurrentWeather(city),
-        setForecast(city),
+        getWeatherForecast(city),
       ]);
       setCurrentWeather(weatherData);
       setForecast(forecastData);
@@ -45,11 +45,35 @@ export const useWeather = () => {
           longitude
         );
         setCurrentWeather(weatherData);
+        const forecastData = await getWeatherForecast(weatherData.name);
+        setForecast(forecastData);
       });
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Failed to fetch weather data."
       );
+    } finally{
+    setLoading(false);
     }
-  };
+  }
+  const setUnit = ()=>{
+    setUnits((prev)=> prev === "C" ? "F" : "C");
+  }
+  useEffect(()=>{
+    fetchWeatherByCity("Ha Noi");
+    // run once on mount
+  }, [])
+
+  return {
+    currentWeather,
+    forecast,
+    loading,
+    error,
+    unit,
+    fetchWeatherByCity,
+    fetchWeatherByLocation,
+    setUnit
+  }
+
+  
 };

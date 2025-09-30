@@ -1,3 +1,27 @@
+.loading-overlay{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(2px);
+  z-index: 50;
+  color: #fff;
+  gap: 12px;
+}
+.spinner{
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.loading-text{ font-weight: 600; }
 .weather-app{
   min-height: 100vh;
 }
@@ -7,8 +31,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  margin: 2rem auto 0;   
-  width: 80%;           
+  margin: 2rem auto 0;  
+  width: 80%;          
   max-width: 120rem;      
   border-radius: 30px;
   background: rgba(0, 0, 0, 0.1);  
@@ -24,28 +48,58 @@
 .search-box {
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 40rem;
-}
-.search-input {
-  padding: 8px 10px;
   border-radius: 20px;
-  font-size: 16px;
-  width: 80%;
- background: transparent;
- border: 1px solid;
+  width: 40rem;
+  padding: 5px 12px;
+  background: transparent; 
+  position: relative; /* anchor dropdown */
+  border: 1px solid rgba(255, 255, 255, 0.2);  
 }
+
+.search-input {
+  flex: 1;
+  padding: 8px 40px 8px 12px; 
+  border: none; 
+  font-size: 16px;
+  border-radius: 20px;
+  background: transparent;
+}
+
 .search-input:focus {
   outline: none; 
 }
-.search-button {
-  padding: 3px 5px;
-  border-radius: 100%;
-  font-size: 8px;
+
+.locationIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
   cursor: pointer;
-  background: transparent;
-  border: none;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  filter: brightness(0) invert(1);
 }
+
+.locationIcon:hover {
+  opacity: 1;
+}
+
+/* Show only location button by default; show clear button when input has content */
+.btn-clear{ display: none; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: 0; padding: 0; }
+.btn-location{ position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: 0; padding: 0; }
+.closeIcon{ width: 22px; height: 22px; opacity: .9; filter: brightness(0) invert(1); }
+
+/* When input has any value, hide location and show clear */
+.search-box:has(.search-input:not(:placeholder-shown)) .btn-location{ display: none; }
+.search-box:has(.search-input:not(:placeholder-shown)) .btn-clear{ display: inline-flex; }
+
+/* Fallback for browsers without :has() - simple focus rule */
+.search-input:focus ~ .btn-location{ display: none; }
+.search-input:focus ~ .btn-clear{ display: inline-flex; }
+
+
 .menu {
   width: 44px;
   height: 44px;
@@ -84,7 +138,124 @@
   display: block;  
   pointer-events: none; 
 }
+main{
+  width: 80%;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
 
+@media (max-width: 640px){
+  .weather-header{
+    width: 92%;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .weather-title{
+    font-size: 16px;
+  }
+  .search-box{
+    width: 100%;
+  }
+  .search-input{
+    font-size: 14px;
+    padding: 8px 36px 8px 10px;
+  }
+  .locationIcon{
+    width: 24px;
+    height: 24px;
+    right: 8px;
+  }
+  .menu{ width: 40px; height: 40px; }
+  main{
+    width: 92%;
+    gap: 1.25rem;
+  }
+}
 
+@media (min-width: 641px) and (max-width: 1023px){
+  .weather-header{ width: 88%; }
+  main{ width: 88%; }
+  .search-box{ width: 28rem; }
+}
 
+@media (min-width: 1280px){
+  .weather-header{ width: 72%; }
+  main{ width: 72%; }
+}
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 30px); 
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  overflow: hidden;
+  z-index: 60;
+}
 
+.search-loading {
+  padding: 1.5rem;
+  text-align: center;
+  color: rgba(255,255,255,0.7);
+}
+
+.spinner {
+  margin: 0 auto 0.75rem;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Item */
+.search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: #fff;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.search-info {
+  font-weight: 500;
+}
+
+.search-extra {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0 1rem;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.search-item:hover .search-icon {
+  opacity: 1;
+}

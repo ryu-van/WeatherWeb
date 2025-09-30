@@ -27,6 +27,7 @@ export const getCurrentWeather = async (city) => {
     if (!data.dt) {
       data.dt = Math.floor(Date.now() / 1000);
     }
+    return data;
   } catch (error) {
     if (error instanceof TypeError && error.message.includes("fetch")) {
       throw new Error(

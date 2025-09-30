@@ -1,0 +1,219 @@
+.current-weather {
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px;
+  color: #fff;
+  width: 100%;
+}
+.header-current-weather {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.location-icon {
+  width: 45px;
+  height: 45px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+.weather-sub h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.weather-sub p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+.right-info{
+    text-align: right;
+}
+.days{
+    font-size: 1.4rem;
+    margin: 0;
+}
+.hours{
+    font-size: 0.9rem; /* fixed missing unit */
+    opacity: 0.8;
+}
+.main-weather{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+.temp-info{
+    flex: 1;
+}
+.main-temp{
+    font-size: 64px ; /* base on mobile */
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.weather-description{
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight:500;
+}
+.temp-diff{
+    display: flex;
+    justify-items: center;
+    color: #fff;
+    gap: 30px;
+
+}
+.weather-icon{
+    color: rgba(255, 255, 255, 0.9);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+.weather-icon:hover{
+    transform: scale(1.1);
+}
+.weather-stats-grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+@media(min-width:1024px){
+    .weather-stats-grid{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+.weather-stat-card{
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 1rem;
+    padding: 1rem;
+    transition: background 0.3s ease; /* fixed typo */
+}
+.weather-stat-card:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+.weather-stat-header{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+.weather-stat-icon {
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease;
+}
+
+.weather-stat-card:hover .weather-stat-icon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.weather-stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.weather-stat-value {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-left: 2.75rem;
+}
+/* Grid chứa Sunrise & Sunset */
+.sun-time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem; /* giống gap-4 */
+}
+
+/* Card chung */
+.sun-time-card {
+  backdrop-filter: blur(6px);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid transparent;
+  transition: background 0.3s ease;
+  color: #fff;
+}
+
+.sun-time-card.sunrise {
+  background: linear-gradient(to right, rgba(249, 115, 22, 0.2), rgba(253, 224, 71, 0.2));
+  border-color: rgba(251, 146, 60, 0.2); 
+}
+
+.sun-time-card.sunset {
+  background: linear-gradient(to right, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+  border-color: rgba(192, 132, 252, 0.2); 
+}
+
+.sun-time-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.sun-time-icon {
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  
+}
+.sun-time-icon img {
+  width: 45px;   
+  height: 45px;
+  object-fit: contain;
+}
+
+
+.sun-time-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sun-time-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding-left: 2.75rem;
+}
+
+/* Responsive: mobile-first adjustments */
+@media (max-width: 640px){
+  .header-current-weather{
+    gap: 12px;
+  }
+  .days{ font-size: 1rem; }
+  .hours{ font-size: 0.8rem; }
+  .main-weather{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .main-temp{ font-size: 56px; }
+  .weather-description{ font-size: 18px; }
+  .temp-diff{ gap: 16px; }
+  .weather-stats-grid{ grid-template-columns: 1fr; }
+  .sun-time-grid{ grid-template-columns: 1fr; }
+}
+
+/* Tablets */
+@media (min-width: 641px) and (max-width: 1023px){
+  .main-temp{ font-size: 80px; }
+  .weather-stats-grid{ grid-template-columns: repeat(2,1fr); }
+  .sun-time-grid{ grid-template-columns: repeat(2,1fr); }
+}
+
+/* Desktops */
+@media (min-width: 1024px){
+  .main-temp{ font-size: 120px; }
+}
