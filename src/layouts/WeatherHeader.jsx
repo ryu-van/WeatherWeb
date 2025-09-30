@@ -124,7 +124,7 @@ const WeatherHeader = ({
                     <button
                   className="search-item"
                   type="button"
-                  key={`${city.name}-${city.country}-${city.index}`}
+                  key={`${city.name}-${city.country}-${index}`}
                   onClick={() => handleSuggestionsClick(city)}
                 >
                   <div className="search-info">

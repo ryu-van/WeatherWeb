@@ -39,6 +39,8 @@
   backdrop-filter: blur(8px);       
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.2);  
+  position: relative;
+  z-index: 200;
 }
 .weather-title {
   font-size: 20px;
@@ -86,16 +88,13 @@
   opacity: 1;
 }
 
-/* Show only location button by default; show clear button when input has content */
 .btn-clear{ display: none; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: 0; padding: 0; }
 .btn-location{ position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: 0; padding: 0; }
 .closeIcon{ width: 22px; height: 22px; opacity: .9; filter: brightness(0) invert(1); }
 
-/* When input has any value, hide location and show clear */
 .search-box:has(.search-input:not(:placeholder-shown)) .btn-location{ display: none; }
 .search-box:has(.search-input:not(:placeholder-shown)) .btn-clear{ display: inline-flex; }
 
-/* Fallback for browsers without :has() - simple focus rule */
 .search-input:focus ~ .btn-location{ display: none; }
 .search-input:focus ~ .btn-clear{ display: inline-flex; }
 
@@ -196,7 +195,7 @@ main{
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   overflow: hidden;
-  z-index: 60;
+  z-index: 1000;
 }
 
 .search-loading {
