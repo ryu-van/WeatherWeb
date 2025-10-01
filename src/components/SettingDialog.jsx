@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SettingDialog.css";
-
+import { X } from "lucide-react";
 const SettingDialog = ({ open, onClose, unit, chooseUnit }) => {
   const [language, setLanguage] = useState(localStorage.getItem('language') || 'en');
 
@@ -19,7 +19,7 @@ const SettingDialog = ({ open, onClose, unit, chooseUnit }) => {
         <div className="dialog-header">
           <h3>{language === 'vi' ? 'Cài đặt' : 'Settings'}</h3>
           <button className="close-btn" onClick={onClose}>
-            <img src="/src/assets/icons8-close-50.png" alt="Close" />
+            <X/>
           </button>
         </div>
         <div className="dialog-row">
