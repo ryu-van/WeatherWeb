@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import calenderIcon from "../assets/icons8-calender-64.png";
 import "../components/WeatherForecast.css";
@@ -9,15 +9,11 @@ import { formatTemperature, getWeatherIcon } from '../utils/weatherUtil';
 const WeatherForecast = ({forecast, unit}) => {
   const { t } = useTranslation();
   
-  useEffect(() => {
-    console.log("WeatherForecast component rendered with forecast:", forecast);
-  }, [forecast]);
   
   if (!forecast) {
     return <div className="weather-forecasts">{t('weather.loading_forecast')}</div>;
   }
   
-  console.log("Forecast data:", forecast);
   
   if (!forecast.list || !Array.isArray(forecast.list) || forecast.list.length === 0) {
     return <div className="weather-forecasts">Không có dữ liệu dự báo. Vui lòng thử lại sau.</div>;
@@ -26,7 +22,6 @@ const WeatherForecast = ({forecast, unit}) => {
   const dailyForecastMap = {};
   
   try {
-    console.log("Processing forecast list:", forecast.list);
     
     forecast.list.forEach(item => {
       if (!item || typeof item !== 'object') {
@@ -74,19 +69,16 @@ const WeatherForecast = ({forecast, unit}) => {
       }
     });
     
-    console.log("Processed daily forecast map:", dailyForecastMap);
   } catch (error) {
     console.error("Error processing forecast data:", error);
     return <div className="weather-forecasts">Lỗi xử lý dữ liệu dự báo. Vui lòng thử lại.</div>;
   }
   
   if (Object.keys(dailyForecastMap).length === 0) {
-    console.error("No valid forecast data after processing");
     return <div className="weather-forecasts">Không có dữ liệu dự báo hợp lệ. Vui lòng thử lại sau.</div>;
   }
   
   const dailyItems = Object.values(dailyForecastMap).slice(0, 5);
-  console.log("Final daily items:", dailyItems);
 
   return (
     <div className='weather-forecasts'>

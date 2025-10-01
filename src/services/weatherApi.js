@@ -69,7 +69,6 @@ export const getCurrentWeatherByCoords = async (lat, lon) => {
 };
 export const getWeatherForecast = async (city) => {
   try {
-    console.log(`Fetching forecast for city: ${city}`);
     const response = await fetch(
       `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`
     );
@@ -91,11 +90,8 @@ export const getWeatherForecast = async (city) => {
     }
     
     const data = await response.json();
-    console.log("Forecast API response:", data);
     
-    // Kiểm tra dữ liệu trả về
     if (!data || !data.list || !Array.isArray(data.list)) {
-      console.error("Invalid forecast data format:", data);
       throw new Error("Invalid forecast data received from API");
     }
     

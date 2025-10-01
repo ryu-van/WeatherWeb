@@ -12,8 +12,8 @@
 
 .setting-dialog {
   position: absolute;
-  top: 12%; /* Dưới header */
-  right: 5%; /* Căn phải như icon menu */
+  top: 12%; 
+  right: 5%; 
   width: 320px;
   max-width: calc(100vw - 32px);
   padding: 18px 18px 20px;
@@ -67,7 +67,7 @@
   cursor: pointer;
   transition: transform .08s ease, background .15s ease;
 }
-.close-btn img {
+.closeIcon {
   width: 30px;
   height: 30px;
   filter: invert(1);

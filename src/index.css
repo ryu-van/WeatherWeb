@@ -17,12 +17,22 @@ html, body {
   display: flex;
   width: 100%;
   flex-direction: column;
-  background-image: url('https://images.pexels.com/photos/66997/pexels-photo-66997.jpeg');
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+  animation: fadeSlide 120s infinite;
 }
+
+@keyframes fadeSlide {
+  0%   { background-image: url('https://images.pexels.com/photos/66997/pexels-photo-66997.jpeg'); opacity: 1; }
+  30%  { background-image: url('https://images.pexels.com/photos/66997/pexels-photo-66997.jpeg'); opacity: 1; }
+  33%  { background-image: url('https://images.pexels.com/photos/165754/pexels-photo-165754.jpeg'); opacity: 0; }
+  63%  {background-image: url('https://images.pexels.com/photos/4784737/pexels-photo-4784737.jpeg'); opacity: 1; }
+  66%  { background-image: url('https://images.pexels.com/photos/1166209/pexels-photo-1166209.jpeg'); opacity: 0; }
+  100% { background-image: url('https://images.pexels.com/photos/691901/pexels-photo-691901.jpeg'); opacity: 1; }
+}
+
 
 #root, .app {
   min-height: 100vh;
