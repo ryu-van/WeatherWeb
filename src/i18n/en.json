@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Weather Forecast",
+    "loading": "Loading data...",
+    "error": "An error occurred. Please try again later."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "temperature": "Temperature",
+    "celsius": "Celsius (°C)",
+    "fahrenheit": "Fahrenheit (°F)"
+  },
+  "weather": {
+    "today": "Today",
+    "forecast": "5 Day Forecast",
+    "humidity": "Humidity",
+    "visibility": "Visibility",
+    "wind_speed": "Wind Speed",
+    "pressure": "Pressure",
+    "feels_like": "Feels Like",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "loading_forecast": "Loading forecast data..."
+  },
+  "search": {
+    "placeholder": "Search for a city...",
+    "no_results": "No results found"
+  }
+}

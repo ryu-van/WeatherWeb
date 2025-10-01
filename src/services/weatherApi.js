@@ -69,9 +69,11 @@ export const getCurrentWeatherByCoords = async (lat, lon) => {
 };
 export const getWeatherForecast = async (city) => {
   try {
+    console.log(`Fetching forecast for city: ${city}`);
     const response = await fetch(
       `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`
     );
+    
     if (!response.ok) {
       if (response.status === 404) {
         throw new Error(
@@ -87,8 +89,19 @@ export const getWeatherForecast = async (city) => {
         );
       }
     }
-    return await response.json();
+    
+    const data = await response.json();
+    console.log("Forecast API response:", data);
+    
+    // Kiểm tra dữ liệu trả về
+    if (!data || !data.list || !Array.isArray(data.list)) {
+      console.error("Invalid forecast data format:", data);
+      throw new Error("Invalid forecast data received from API");
+    }
+    
+    return data;
   } catch (error) {
+    console.error("Error in getWeatherForecast:", error);
     if (error instanceof TypeError && error.message.includes("fetch")) {
       throw new Error(
         "Network error. Please check your internet connection and try again."

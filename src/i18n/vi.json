@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Dự Báo Thời Tiết",
+    "loading": "Đang tải dữ liệu...",
+    "error": "Đã xảy ra lỗi. Vui lòng thử lại sau."
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "temperature": "Nhiệt độ",
+    "celsius": "Độ C (°C)",
+    "fahrenheit": "Độ F (°F)"
+  },
+  "weather": {
+    "today": "Hôm nay",
+    "forecast": "Dự báo 5 ngày",
+    "humidity": "Độ ẩm",
+    "visibility": "Tầm nhìn",
+    "wind_speed": "Tốc độ gió",
+    "pressure": "Áp suất",
+    "feels_like": "Cảm giác như",
+    "sunrise": "Bình minh",
+    "sunset": "Hoàng hôn",
+    "loading_forecast": "Đang tải dữ liệu dự báo..."
+  },
+  "search": {
+    "placeholder": "Tìm kiếm thành phố...",
+    "no_results": "Không tìm thấy kết quả"
+  }
+}

@@ -68,7 +68,11 @@
     justify-items: center;
     color: #fff;
     gap: 30px;
+    margin-bottom: 20px;
 
+}
+.temp-diff span{
+  font-size: 20px;
 }
 .weather-icon{
     color: rgba(255, 255, 255, 0.9);

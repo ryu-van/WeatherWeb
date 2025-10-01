@@ -21,8 +21,10 @@ export const useWeather = () => {
         getWeatherForecast(city),
       ]);
       setCurrentWeather(weatherData);
+      console.log("Forecast data received:", forecastData);
       setForecast(forecastData);
     } catch (err) {
+      console.error("Error fetching weather data:", err);
       setError(
         err instanceof Error ? err.message : "Failed to fetch weather data."
       );
@@ -34,26 +36,33 @@ export const useWeather = () => {
   const fetchWeatherByLocation = async () => {
     if (!navigator.geolocation) {
       setError("Geolocation is not supported by your browser.");
+      return;
     }
     setLoading(true);
     setError(null);
+    
     try {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const [latitude, longitude] = position.coords;
-        const weatherData = await getCurrentWeatherByCoords(
-          latitude,
-          longitude
-        );
-        setCurrentWeather(weatherData);
-        const forecastData = await getWeatherForecast(weatherData.name);
-        setForecast(forecastData);
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
       });
+      
+      const { latitude, longitude } = position.coords;
+      const weatherData = await getCurrentWeatherByCoords(
+        latitude,
+        longitude
+      );
+      setCurrentWeather(weatherData);
+      
+      const forecastData = await getWeatherForecast(weatherData.name);
+      setForecast(forecastData);
+      
     } catch (err) {
+      console.error("Error fetching weather data:", err);
       setError(
         err instanceof Error ? err.message : "Failed to fetch weather data."
       );
-    } finally{
-    setLoading(false);
+    } finally {
+      setLoading(false);
     }
   }
   const setUnit = ()=>{

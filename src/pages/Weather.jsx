@@ -25,8 +25,6 @@ const Weather = () => {
         setOpenSettings={setOpenSettings}
         onSearch={fetchWeatherByCity}
         onLocationSearch={fetchWeatherByLocation}
-        unit={unit}
-        chooseUnit={setUnit}
         loading={loading}
       />
       <main>
@@ -38,8 +36,8 @@ const Weather = () => {
         )}
         {currentWeather && !loading && (
           <>
-            <WeatherCard />
-            {forecast && <WeatherForecast />}
+            <WeatherCard weather = {currentWeather} unit={unit} />
+            {forecast && <WeatherForecast forecast={forecast} unit={unit} />}
           </>
         )}
 
@@ -48,6 +46,8 @@ const Weather = () => {
       <SettingDialog
         open={openSettings}
         onClose={() => setOpenSettings(false)}
+         unit={unit}
+        chooseUnit={setUnit}
       ></SettingDialog>
     </div>
   );
