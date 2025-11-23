@@ -72,7 +72,6 @@ export const getWeatherForecast = async (city) => {
     const response = await fetch(
       `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}&units=metric`
     );
-    
     if (!response.ok) {
       if (response.status === 404) {
         throw new Error(
@@ -88,16 +87,8 @@ export const getWeatherForecast = async (city) => {
         );
       }
     }
-    
-    const data = await response.json();
-    
-    if (!data || !data.list || !Array.isArray(data.list)) {
-      throw new Error("Invalid forecast data received from API");
-    }
-    
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error("Error in getWeatherForecast:", error);
     if (error instanceof TypeError && error.message.includes("fetch")) {
       throw new Error(
         "Network error. Please check your internet connection and try again."
